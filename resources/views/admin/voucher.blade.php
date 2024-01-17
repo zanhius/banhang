@@ -1,8 +1,8 @@
 
 
 @extends('admin.master')
-@section('title', "Quản lý ngăn")
-@section('title-page', "Quản lý ngăn")
+@section('title', "Quản lý voucher")
+@section('title-page', "Quản lý voucher")
 @section('main-content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -19,6 +19,7 @@
 
         <!-- Main content -->
         <section class="content">
+            <a href="{{ route('voucher.get_add_voucher') }}" class="btn btn-success">+Thêm voucher</a>
 
             <!-- Default box -->
             <div class="col-xs-12">
@@ -54,6 +55,7 @@
                                 <th>STT</th>
                                 <th>Mã Voucher </th>
                                 <th>Giảm giá</th>
+                                <th>Số lượt</th>
                                 <th>Tráng thái</th>
                                 <th>Kiểu giảm giá </th>
                                 <th>Ngày bắt đầu</th>
@@ -66,10 +68,11 @@
                                     <td>{{ $voucher->id }}</td>
                                     <td>{{ $voucher->code_voucher }}</td>
                                     <td>{{ $voucher->amount }}</td>
+                                    <td>{{ $voucher->number_use }}</td>
                                     <td> @if ($voucher->status == 0)
-                                            Chưa sử dụng
+                                           Hoạt Động
                                         @elseif ($voucher->status == 1)
-                                            Đã sử dụng
+                                           Không Hoạt Động
                                         @endif</td>
                                     <td>@if ($voucher->type == 0)
                                             Giảm trực tiếp

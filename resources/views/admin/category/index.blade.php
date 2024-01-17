@@ -20,7 +20,6 @@
         <!-- Main content -->
         <section class="content">
             <a href="{{ route('admin.add-sp') }}" class="btn btn-success">+Thêm Sản phẩm</a>
-            <a href="{{ route('voucher.get_add_voucher') }}" class="btn btn-success">+Thêm voucher</a>
         </section>
         <!-- /.content -->
     </div>

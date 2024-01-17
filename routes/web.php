@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\CustomerLoginController;
-use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\KhachHang\ChiTietDonHangController;
+use App\Http\Controllers\KhachHang\HoaDonController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,39 +26,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+Route::prefix('banhang')->middleware('auth.customer')->group(function (){
+    Route::get('/', [HoaDonController::class, 'index'])->name('index_mua_hang');
+    Route::get('/mua-hang/{id}', [HoaDonController::class, 'create'])->name('get_mua_hang');
+    Route::post('/mua-hang/{id}', [HoaDonController::class, 'store'])->name('mua_hang');
+    Route::get('/hoa-don', [HoaDonController::class, 'hoaDon'])->name('hoadon.index');
+    Route::get('/chi-tiet-don-hang/{id}', [ChiTietDonHangController::class, 'show'])->name('chi-tiet-don-hang');
 });
 
-Route::prefix('category')->group(function () {
-    Route::name('category.')->group(function () {
-        Route::get('san-pham', [SanPhamController::class, 'index'])->name('index');
-        Route::get('add-san-pham', [SanPhamController::class, 'create'])->name('add-sp');
-        Route::post('add-san-pham', [SanPhamController::class, 'store'])->name('add_san_pham');
-        Route::get('edit-san-pham/{id}', [SanPhamController::class, 'edit']);
-        Route::put('edit-san-pham/{id}', [SanPhamController::class, 'update'])->name('edit_san_pham');
-        Route::delete('delete-san-pham/{id}', [SanPhamController::class, 'destroy'])->name('delete_san_pham');
-    });
-});
-Route::prefix('voucher')->group(function () {
-    Route::name('voucher.')->group(function () {
-        Route::get('/', [VoucherController::class, 'index'])->name('index');
-        Route::get('/add', [VoucherController::class, 'create']);
-        Route::post('/add', [VoucherController::class, 'store'])->name('add_voucher');
-        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-        Route::put('/edit/{id}', [VoucherController::class, 'update'])->name('edit_voucher');
-        Route::delete('/delete/{id}', [VoucherController::class, 'destroy'])->name('delete_voucher');
-    });
-});
 
 Route::get('/customer/dashboard', function () {
     return view('customer.dashboard');
 })->middleware(['auth:customer', 'verified'])->name('customer.dashboard');
+
+
 require __DIR__.'/customerAuth.php';
-
-
-
-
 require __DIR__.'/auth.php';

@@ -1,11 +1,11 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ route('admin.admin') }}" class="logo">
+    <a href="{{ route('index_mua_hang') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">Admin</span>
+        <span class="logo-lg">User</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -106,7 +106,9 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{asset('assets')}}/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                        @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->name)
+                            <span class="hidden-xs">{{ Auth::guard('customer')->user()->name }}</span>
+                        @endif
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -139,12 +141,12 @@
                                 <a href="" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                <a href="{{ route('customer.logout') }}" class="btn btn-default btn-flat"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>

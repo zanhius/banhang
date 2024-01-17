@@ -9,13 +9,16 @@ use App\Http\Controllers\Customer\PasswordController;
 use App\Http\Controllers\Customer\PasswordResetLinkController;
 use App\Http\Controllers\Customer\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileCustomerController;
 
 Route::middleware('guest:customer')->group(function () {
+    Route::get('customer', [AuthenticatedSessionController::class, 'index'])
+        ->name('customer.index');
 
     Route::get('customer/login', [AuthenticatedSessionController::class, 'create'])
         ->name('customer.login');
 
-    Route::post('customer/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('customer/login', [AuthenticatedSessionController::class, 'store'])->name('post.customer.login');
 
     Route::get('customer/forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('customer.password.request');
@@ -51,4 +54,14 @@ Route::middleware('auth:customer')->group(function () {
 
     Route::post('customer/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('customer.logout');
+});
+
+Route::middleware('auth:customer')->group(function () {
+    Route::prefix('customer')->group(function () {
+        Route::name('customer.')->group(function () {
+            Route::get('/profile', [ProfileCustomerController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile', [ProfileCustomerController::class, 'update'])->name('profile.update');
+            Route::delete('/profile', [ProfileCustomerController::class, 'destroy'])->name('profile.destroy');
+        });
+    });
 });

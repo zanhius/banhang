@@ -1,15 +1,11 @@
 @extends('admin.master')
-@section('title',"Trang Chu")
-@section('title-page',"Quan ly bai viet")
+@section('title',"Quản lý voucher")
+@section('title-page',"Add voucher")
 @section('main-content')
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Quản lý menu trang giao diện
-
-            </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">Examples</a></li>
@@ -25,7 +21,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm mới menu</h3>
+                        <h3 class="box-title">Thêm mới voucher</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -50,14 +46,15 @@
                                 <div class="">
                                     <input id="code_voucher" type="text"
                                            class="form-control @error('code_voucher') is-invalid @enderror"
-                                           name="code_voucher">
+                                           name="code_voucher" value="{{ old('code_voucher', Str::random(8)) }}" readonly>
                                     @error('code_voucher')
                                     <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+            <strong>{{ $message }}</strong>
+        </span>
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="amount">Giảm giá</label>
                                 <div class="">
@@ -73,13 +70,27 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="number_use">Số lượt</label>
+                                <div class="">
+                                    <input id="number_use" type="text"
+                                           class="form-control @error('number_use') is-invalid @enderror"
+                                           name="number_use">
+                                    @error('number_use')
+                                    <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="status">Trạng thái</label>
                                 <div class="">
                                     <select id="status" class="form-control @error('status') is-invalid @enderror"
                                             name="status">
-                                        <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Chưa sử dụng
+                                        <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Hoạt Động
                                         </option>
-                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Đã sử dụng
+                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Không Hoạt Động
                                         </option>
                                     </select>
                                     @error('status')

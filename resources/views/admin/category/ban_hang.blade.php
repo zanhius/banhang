@@ -93,12 +93,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('category.edit_san_pham', $sanPham) }}" class="btn btn-success" style="display: inline-block; margin-right: 10px;">Sửa</a>
-                                        <form action="{{ route('category.delete_san_pham', $sanPham) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger " onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
-                                        </form>
+                                        <a href="{{ route('get_mua_hang', $sanPham) }}" class="btn btn-success" style="display: inline-block; margin-right: 10px;">Mua</a>
                                     </td>
                                 </tr>
 

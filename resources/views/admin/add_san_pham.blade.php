@@ -1,15 +1,11 @@
 @extends('admin.master')
-@section('title',"Trang Chu")
-@section('title-page',"Quan ly bai viet")
+@section('title',"Thêm sản phẩm")
+@section('title-page',"Thêm sản phẩm")
 @section('main-content')
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Quản lý menu trang giao diện
-
-      </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -25,11 +21,11 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Thêm mới menu</h3>
+              <h3 class="box-title">Thêm sản phẩm</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-              <form role="form" method="POST" action="{{ route('category.add_san_pham') }}">
+              <form role="form" method="POST" action="{{ route('admin.add_san_pham') }}">
                   @csrf
                   <div class="box-body">
 
