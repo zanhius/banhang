@@ -8,17 +8,20 @@ use App\Http\Controllers\Customer\NewPasswordController;
 use App\Http\Controllers\Customer\PasswordController;
 use App\Http\Controllers\Customer\PasswordResetLinkController;
 use App\Http\Controllers\Customer\VerifyEmailController;
+use App\Http\Controllers\CustomerLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileCustomerController;
+use App\Http\Controllers\Customer\RegisteredUserController;
 
 Route::middleware('guest:customer')->group(function () {
-    Route::get('customer', [AuthenticatedSessionController::class, 'index'])
-        ->name('customer.index');
-
     Route::get('customer/login', [AuthenticatedSessionController::class, 'create'])
         ->name('customer.login');
 
     Route::post('customer/login', [AuthenticatedSessionController::class, 'store'])->name('post.customer.login');
+
+    Route::get('customer/register', [CustomerLoginController::class, 'register']);
+
+    Route::post('customer/register',[RegisteredUserController::class, 'storeCustomer'])->name('customer.register');
 
     Route::get('customer/forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('customer.password.request');
@@ -40,6 +43,7 @@ Route::middleware('auth:customer')->group(function () {
     Route::get('customer/verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
         ->name('customer.verification.verify');
+
 
     Route::post('customer/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')
@@ -65,3 +69,6 @@ Route::middleware('auth:customer')->group(function () {
         });
     });
 });
+
+Route::get('customer', [AuthenticatedSessionController::class, 'index'])
+    ->name('customer.index');

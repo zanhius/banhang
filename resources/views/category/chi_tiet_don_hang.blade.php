@@ -59,12 +59,13 @@
                             </tr>
 
                             <tr>
+                            @foreach ($chiTietDonHangs as $chiTietDonHang)
                             <tr>
                                 <td>{{ $chiTietDonHang->hoa_don_id }}</td>
                                 <td>{{ $chiTietDonHang->table_sanPham->name}}</td>
                                 <td>{{ $chiTietDonHang->quantity }}</td>
                                 <td>
-                                    @if ($chiTietDonHang->table_hoaDon && $chiTietDonHang->table_hoaDon->codeVoucher)
+                                    @if ($chiTietDonHang->table_hoaDon->codeVoucher)
                                         {{ $chiTietDonHang->table_hoaDon->codeVoucher->code_voucher }}
                                         ({{ $chiTietDonHang->table_hoaDon->codeVoucher->amount }}
 
@@ -83,9 +84,10 @@
                                 </td>
                                 <td>{{ $chiTietDonHang->table_hoaDon->customers->name }}</td>
                                 <td>{{ $chiTietDonHang->table_hoaDon->customers->address }}</td>
-                                <td>{{ $chiTietDonHang->table_hoaDon->real_amount }}</td>
-                                <td>{{ $chiTietDonHang->table_hoaDon->total_amount }}</td>
+                                <td>{{ $chiTietDonHang->amount }}</td>
+                                <td>{{ $chiTietDonHang->total_amount }}</td>
                             </tr>
+                            @endforeach
 
                             </tbody>
                         </table>

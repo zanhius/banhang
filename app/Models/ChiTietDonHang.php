@@ -14,7 +14,8 @@ class ChiTietDonHang extends Model
         'hoa_don_id',
         'id_san_pham',
         'quantity',
-        'amount'
+        'amount',
+        'total_amount'
     ];
 
     public  function table_hoaDon()

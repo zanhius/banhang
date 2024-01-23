@@ -47,35 +47,38 @@
                             </div>
                         @endif
                         <table class="table table-hover">
-                            <tbody>
+                            <thead>
                             <tr>
                                 <th>Khách hàng</th>
                                 <th>Số lượng</th>
                                 <th>Voucher</th>
                                 <th>Tổng tiền ban đầu</th>
                                 <th>Tổng tiền phải trả</th>
+                                <th>Thao tác</th>
                             </tr>
-
-                            <tr>
-                                <td>{{ $hoaDon->customers->name ?? ''}}</td>
-                                <td>{{ $hoaDon->quantity }}</td>
-                                <td>
-                                    @if ($hoaDon->id_voucher)
-                                        Có Voucher - {{ $hoaDon->codeVoucher->code_voucher }}
-                                    @else
-                                        Không có voucher
-                                    @endif
-                                </td>
-                                <td>{{ $hoaDon->real_amount }}</td>
-                                <td>{{ $hoaDon->total_amount }}</td>
-                                <td>
-                                    <a href="{{ route('chi-tiet-don-hang', $hoaDon->id) }}" class="btn btn-primary">Xem
-                                        chi tiết</a>
-                                </td>
-                            </tr>
-
+                            </thead>
+                            <tbody>
+                            @foreach ($hoaDons as $hoaDon)
+                                <tr>
+                                    <td>{{ $hoaDon->customers->name ?? '' }}</td>
+                                    <td>{{ $hoaDon->quantity }}</td>
+                                    <td>
+                                        @if ($hoaDon->id_voucher)
+                                            Có Voucher - {{ $hoaDon->codeVoucher->code_voucher }}
+                                        @else
+                                            Không có voucher
+                                        @endif
+                                    </td>
+                                    <td>{{ $hoaDon->real_amount }}</td>
+                                    <td>{{ $hoaDon->total_amount }}</td>
+                                    <td>
+                                        <a href="{{ route('chi-tiet-don-hang', $hoaDon->id) }}" class="btn btn-primary">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
+
                     </div>
                     <!-- /.box-body -->
                 </div>

@@ -48,38 +48,44 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <table class="table table-hover">
-                            <tbody>
-                            <tr>
-                                <th>STT </th>
-                                <th>Tên </th>
-                                <th>Giá  tiền</th>
-                                <th>Số lương</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
+                        <form action="{{ route('post_mua_hang') }}" method="POST">
+                            @csrf
 
-                            </tr>
-                            @foreach($sanPhams as $sanPham)
-
+                            <table class="table table-hover">
+                                <tbody>
                                 <tr>
-                                    <td>{{ $sanPham->id }}</td>
-                                    <td>{{ $sanPham->name }}</td>
-                                    <td>{{ $sanPham->amount }}</td>
-                                    <td>{{ $sanPham->quantity }}</td>
-                                    <td>@if ($sanPham->status == 0)
-                                            Đang bán
-                                        @elseif ($sanPham->status == 1)
-                                            Không bán
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('get_mua_hang', $sanPham) }}" class="btn btn-success" style="display: inline-block; margin-right: 10px;">Mua</a>
-                                    </td>
+                                    <th>STT</th>
+                                    <th>Tên</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
                                 </tr>
+                                @foreach($sanPhams as $sanPham)
+                                    @if($sanPham->quantity > 0 && $sanPham->status == 0)
+                                        <tr>
+                                            <td>{{ $sanPham->id }}</td>
+                                            <td>{{ $sanPham->name }}</td>
+                                            <td>{{ $sanPham->amount }}</td>
+                                            <td>{{ $sanPham->quantity }}</td>
+                                            <td>
+                                                @if ($sanPham->status == 0)
+                                                    Đang bán
+                                                @elseif ($sanPham->status == 1)
+                                                    Không bán
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="sanPhamIds[]" value="{{ $sanPham->id }}">
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
 
-                            @endforeach
-                            </tbody>
-                        </table>
+                            <button type="submit" class="btn btn-success">Mua các sản phẩm đã chọn</button>
+                        </form>
                     </div>
                     <!-- /.box-body -->
                 </div>

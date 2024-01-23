@@ -3,7 +3,7 @@
     <!-- Logo -->
     <a href="{{ route('admin.admin') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>Ad</b>m</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">Admin</span>
     </a>
@@ -114,8 +114,7 @@
                             <img src="{{asset('assets')}}/images/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                Admin - <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -136,13 +135,13 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Thông tin</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng xuất') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

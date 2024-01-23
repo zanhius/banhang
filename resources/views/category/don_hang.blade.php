@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('category.master')
 @section('title', "Chi tiết đơn hàng")
 @section('title-page', "Chi tiết đơn hàng")
 @section('main-content')

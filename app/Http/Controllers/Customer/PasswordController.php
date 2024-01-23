@@ -20,10 +20,10 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        $request->user()->update([
+        $request->user('customer')->update([
             'password' => Hash::make($validated['password']),
         ]);
-
+        session()->flash('success', 'Đổi mật khâu thành công');
         return back()->with('status', 'password-updated');
     }
 }

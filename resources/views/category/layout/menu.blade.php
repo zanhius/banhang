@@ -27,7 +27,17 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
 
       <ul class="sidebar-menu" data-widget="tree">
-
+          <li class="treeview">
+              <a href="#">
+                  <i class="fa fa-dashboard"></i> <span>Đơn hàng</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="{{ route('customer.don_hang') }}"><i class="fa fa-circle-o"></i>Xem đơn hàng</a></li>
+              </ul>
+          </li>
       </ul>
     </section>
     <!-- /.sidebar -->

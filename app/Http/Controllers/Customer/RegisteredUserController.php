@@ -76,6 +76,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard('customer')->login($customer);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/customer/login');
     }
 }

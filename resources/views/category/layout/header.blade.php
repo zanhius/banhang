@@ -3,7 +3,7 @@
     <!-- Logo -->
     <a href="{{ route('index_mua_hang') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>U</b>ser</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">User</span>
     </a>
@@ -138,13 +138,13 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('customer.profile.edit') }}" class="btn btn-default btn-flat">Thông tin</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('customer.logout') }}" class="btn btn-default btn-flat"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng xất') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" class="d-none">
                                     @csrf

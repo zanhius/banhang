@@ -30,10 +30,12 @@ Route::get('/dashboard', function () {
 
 Route::prefix('banhang')->middleware('auth.customer')->group(function (){
     Route::get('/', [HoaDonController::class, 'index'])->name('index_mua_hang');
-    Route::get('/mua-hang/{id}', [HoaDonController::class, 'create'])->name('get_mua_hang');
-    Route::post('/mua-hang/{id}', [HoaDonController::class, 'store'])->name('mua_hang');
+    Route::post('/', [HoaDonController::class, 'muaHang'])->name('post_mua_hang');
+    Route::get('/mua-hang/', [HoaDonController::class, 'create'])->name('get_mua_hang');
+    Route::post('/mua-hang/', [HoaDonController::class, 'store'])->name('mua_hang');
     Route::get('/hoa-don', [HoaDonController::class, 'hoaDon'])->name('hoadon.index');
     Route::get('/chi-tiet-don-hang/{id}', [ChiTietDonHangController::class, 'show'])->name('chi-tiet-don-hang');
+    Route::get('/hoadon', [ChiTietDonHangController::class, 'index'])->name('customer.don_hang');
 });
 
 
@@ -42,5 +44,5 @@ Route::get('/customer/dashboard', function () {
 })->middleware(['auth:customer', 'verified'])->name('customer.dashboard');
 
 
-require __DIR__.'/customerAuth.php';
+require __DIR__ . '/customer.php';
 require __DIR__.'/auth.php';

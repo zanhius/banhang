@@ -61,6 +61,7 @@
                                 <th>Ngày bắt đầu</th>
                                 <th>Ngày kết thúc</th>
                                 <th>Ngày sử dụng</th>
+                                <th>Hành động</th>
                             </tr>
                             @foreach($vouchers as $voucher)
 
